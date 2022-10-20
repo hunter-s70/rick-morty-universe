@@ -19,7 +19,9 @@ export function getCharactersList(
     gql`
       query getCharacters($page: Int!) {
         characters(page: $page) {
-          ...paginationInfo
+          info {
+            ...paginationInfo
+          }
           results {
             ...characterPreview
           }

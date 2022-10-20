@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import type { Ref, ComputedRef } from "vue";
-import { paginationInfo_info } from "@/api/__generated__/paginationInfo";
+import { paginationInfo } from "@/api/__generated__/paginationInfo";
 
 export interface IComposablePaginationInfo {
   page: Ref<number>;
@@ -10,7 +10,7 @@ export interface IComposablePaginationInfo {
 }
 
 export function usePagination(
-  paginationInfo: ComputedRef<paginationInfo_info | null>
+  paginationInfo: ComputedRef<paginationInfo | null>
 ): IComposablePaginationInfo {
   const page = ref(1);
   const pages = computed(() => paginationInfo.value?.pages || null);

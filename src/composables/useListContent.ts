@@ -1,14 +1,14 @@
 import { computed } from "vue";
 import type { ComputedRef } from "vue";
-import { paginationInfo_info } from "@/api/__generated__/paginationInfo";
+import { paginationInfo } from "@/api/__generated__/paginationInfo";
 
 export interface IListContentData<T> {
-  info: paginationInfo_info | null;
+  info: paginationInfo | null;
   results: T | null;
 }
 
 export interface IListContent<T> {
-  info: ComputedRef<paginationInfo_info | null>;
+  info: ComputedRef<paginationInfo | null>;
   list: ComputedRef<T | null[]>;
 }
 

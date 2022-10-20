@@ -2,8 +2,8 @@
   "version": 2,
   "operations": [
     {
-      "signature": "bbde7e8991e561c90463532ad88d966e25cda38124374744973674ca49eab49b",
-      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Characters{info{count next pages prev}}query getCharacters($page:Int!){characters(page:$page){results{...characterPreview}...paginationInfo}}",
+      "signature": "0daab07725607ffc43a3e3a8fa850488eb60970911914e32e995b1ae81e73d02",
+      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getCharacters($page:Int!){characters(page:$page){info{...paginationInfo}results{...characterPreview}}}",
       "metadata": {
         "engineSignature": ""
       }
@@ -11,6 +11,13 @@
     {
       "signature": "172ae9fa87987d524719af6289d063e6902fba5f7a16b5846ecef8ea5f6bacc9",
       "document": "fragment characterPreview on Character{id image name}fragment episodeFragment on Episode{created episode id name}fragment locationFragment on Location{created dimension id name type}query getCharacter($id:ID!){character(id:$id){created episode{...episodeFragment}gender location{...locationFragment}origin{...locationFragment}species status type...characterPreview}}",
+      "metadata": {
+        "engineSignature": ""
+      }
+    },
+    {
+      "signature": "f078876f93566ab2e83413d3f14760cf9cf1eb0f1343e81fd8a9463073cdabf4",
+      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getLocations($page:Int!){locations(page:$page){info{...paginationInfo}results{created dimension id name residents{...characterPreview}type}}}",
       "metadata": {
         "engineSignature": ""
       }

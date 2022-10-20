@@ -7,7 +7,7 @@
 // GraphQL fragment: paginationInfo
 // ====================================================
 
-export interface paginationInfo_info {
+export interface paginationInfo {
   __typename: "Info";
   /**
    * The length of the response.
@@ -25,9 +25,4 @@ export interface paginationInfo_info {
    * Number of the previous page (if it exists)
    */
   prev: number | null;
-}
-
-export interface paginationInfo {
-  __typename: "Characters";
-  info: paginationInfo_info | null;
 }

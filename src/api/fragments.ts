@@ -4,13 +4,11 @@ import gql from "graphql-tag";
  * Fragment with pagination info
  */
 export const paginationInfoFragment = gql`
-  fragment paginationInfo on Characters {
-    info {
-      count
-      pages
-      next
-      prev
-    }
+  fragment paginationInfo on Info {
+    count
+    pages
+    next
+    prev
   }
 `;
 
