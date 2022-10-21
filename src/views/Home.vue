@@ -92,6 +92,8 @@ $tile-width: 360px;
   }
 
   &__tile {
+    font-size: 24px;
+
     @media (min-width: 1400px) {
       &:nth-child(1),
       &:nth-child(7) {

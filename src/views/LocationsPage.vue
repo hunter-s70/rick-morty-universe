@@ -1,12 +1,23 @@
 <template>
   <div class="locations">
     <div v-if="resultList.length">
-      <div v-for="location in resultList" :key="location.id">
-        <h3 v-html="getFullLocationName(location)"></h3>
-        <span v-for="character in location.residents" :key="character.id">
-          {{ character.name }},
-        </span>
-        <hr />
+      <div
+        v-for="location in resultList"
+        :key="location.id"
+        class="locations__location"
+      >
+        <h2 v-html="getFullLocationName(location)"></h2>
+        <p class="locations__section-name">Residents</p>
+        <div v-if="location.residents.length" class="locations__characters">
+          <CharacterTile
+            v-for="character in location.residents"
+            :reference="`/characters/${character.id}`"
+            :key="character.id"
+            :item="character"
+            class="locations__character-tile"
+          />
+        </div>
+        <div v-else>Unknown</div>
       </div>
     </div>
 
@@ -25,6 +36,7 @@ import { useListContent } from "@/composables/useListContent";
 import { usePagination } from "@/composables/usePagination";
 import { usePaginationList } from "@/composables/usePaginationList";
 
+import CharacterTile from "@/components/CharacterTile.vue";
 import LoadMore from "@/components/LoadMore.vue";
 
 type LocationsList = (getLocations_locations_results | null)[];
@@ -32,6 +44,7 @@ type LocationsList = (getLocations_locations_results | null)[];
 export default defineComponent({
   name: "LocationsPage",
   components: {
+    CharacterTile,
     LoadMore,
   },
   setup() {
@@ -69,6 +82,55 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+$tile-width: 90px;
+
 .locations {
+  &__location:not(:last-child) {
+    margin-bottom: 80px;
+  }
+
+  &__section-name {
+    font-weight: bold;
+  }
+
+  &__characters {
+    display: grid;
+    grid-template-columns: repeat(3, $tile-width);
+    grid-gap: 10px 10px;
+    justify-content: center;
+    max-width: 2000px;
+    margin: auto;
+    padding: 0 10px;
+
+    @media (min-width: 576px) {
+      & {
+        grid-template-columns: repeat(5, $tile-width);
+      }
+    }
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: repeat(7, $tile-width);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      & {
+        grid-template-columns: repeat(12, $tile-width);
+      }
+    }
+
+    @media (min-width: 1400px) {
+      & {
+        grid-template-columns: repeat(14, $tile-width);
+      }
+    }
+  }
+
+  &__character-tile {
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 </style>
