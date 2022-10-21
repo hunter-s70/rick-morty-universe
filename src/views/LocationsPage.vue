@@ -1,7 +1,7 @@
 <template>
-  <div v-if="locations" class="locations">
-    <div v-if="locationsList.length">
-      <div v-for="location in locationsList" :key="location.id">
+  <div class="locations">
+    <div v-if="resultList.length">
+      <div v-for="location in resultList" :key="location.id">
         <h3 v-html="getFullLocationName(location)"></h3>
         <span v-for="character in location.residents" :key="character.id">
           {{ character.name }},
@@ -9,33 +9,50 @@
         <hr />
       </div>
     </div>
+
+    <LoadMore v-if="pages" :page="page" :pages="pages" @click="loadMore" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent } from "vue";
 import { useResult } from "@vue/apollo-composable";
 import { getLocationsList } from "@/api/locations.gql";
-import { getLocations_locations_results } from "@/api/__generated__/getLocations";
 import { UNKNOWN_DIMENSION } from "@/models/constants";
+import { getLocations_locations_results } from "@/api/__generated__/getLocations";
+
+import { useListContent } from "@/composables/useListContent";
+import { usePagination } from "@/composables/usePagination";
+import { usePaginationList } from "@/composables/usePaginationList";
+
+import LoadMore from "@/components/LoadMore.vue";
+
+type LocationsList = (getLocations_locations_results | null)[];
 
 export default defineComponent({
   name: "LocationsPage",
+  components: {
+    LoadMore,
+  },
   setup() {
-    const page = ref(1);
+    const data = computed(() => locations.value || null);
+
+    const { list, info } = useListContent<LocationsList>(data);
+    const { page, pages, nextPage } = usePagination(info);
+    const { resultList, loadMore } = usePaginationList<LocationsList>(
+      list,
+      nextPage
+    );
+
     const { result } = getLocationsList(page);
     const locations = useResult(result);
 
     return {
       page,
-      locations,
+      pages,
+      resultList,
+      loadMore,
     };
-  },
-
-  computed: {
-    locationsList(): (getLocations_locations_results | null)[] {
-      return this.locations?.results || [];
-    },
   },
 
   methods: {
