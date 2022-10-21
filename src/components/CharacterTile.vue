@@ -45,12 +45,18 @@ export default defineComponent({
   }
 
   &__title {
+    overflow: hidden;
+    width: 100%;
     margin: 10px auto;
-    font-size: 20px;
+    font-size: 0.7em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__img {
     vertical-align: top;
+    width: 100%;
+    max-width: 300px;
   }
 }
 </style>
