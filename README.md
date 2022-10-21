@@ -1,4 +1,5 @@
-# rick-morty-wiki
+# rick-morty-universe
+Fan project in the Rick and Morty Universe which uses public [graphql API](https://rickandmortyapi.com/documentation/#graphql).
 
 ## Project setup
 ```
