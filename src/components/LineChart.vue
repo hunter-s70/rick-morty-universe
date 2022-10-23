@@ -45,7 +45,7 @@ export default defineComponent({
     },
     rangeY() {
       const height = this.height - this.padding;
-      return [0, height];
+      return [height, 0];
     },
     viewBox() {
       return `0 0 ${this.width} ${this.height}`;
@@ -65,18 +65,12 @@ export default defineComponent({
         .domain([0, d3.max(this.data, (d) => d)])
         .range(this.rangeY);
 
-      // Scale x on left axis
-      d3.axisBottom().scale(xData);
-
-      // Scale y on top axis
-      d3.axisLeft().scale(yData);
-
       // Create x axis
-      const xAxis = d3.axisBottom().scale(xData);
+      const xAxis = d3.axisBottom().scale(xData); // Scale x on left axis
       d3.select(this.$refs.xAxis).call(xAxis);
 
       // Create y axis
-      const yAxis = d3.axisLeft().scale(yData);
+      const yAxis = d3.axisLeft().scale(yData); // Scale y on top axis
       d3.select(this.$refs.yAxis).call(yAxis);
 
       return {
