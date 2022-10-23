@@ -2,7 +2,7 @@
   <div class="episodes">
     <div v-if="resultList.length">
       <div v-for="episode in resultList" :key="episode.id">
-        <p>{{ episode.name }}</p>
+        <p>{{ episode.name }} - {{ episode.episode }}</p>
       </div>
     </div>
 
@@ -39,7 +39,8 @@ export default defineComponent({
       nextPage
     );
 
-    const { result } = getEpisodesList(page);
+    const filter = { episode: "S02" };
+    const { result } = getEpisodesList(page, filter);
     const episodes = useResult(result);
 
     return {

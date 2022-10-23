@@ -7,6 +7,11 @@
 // START Enums and Input Objects
 //==============================================================
 
+export interface FilterEpisode {
+  name?: string | null;
+  episode?: string | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
