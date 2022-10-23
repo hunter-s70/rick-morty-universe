@@ -16,6 +16,13 @@
       }
     },
     {
+      "signature": "b583fd03c1de8b0e78f1873fb5e4cae7f82e2a31f40cb3e7e038696cf95dcbad",
+      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($page:Int!){episodes(page:$page){info{...paginationInfo}results{air_date characters{...characterPreview}created episode id name}}}",
+      "metadata": {
+        "engineSignature": ""
+      }
+    },
+    {
       "signature": "f078876f93566ab2e83413d3f14760cf9cf1eb0f1343e81fd8a9463073cdabf4",
       "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getLocations($page:Int!){locations(page:$page){info{...paginationInfo}results{created dimension id name residents{...characterPreview}type}}}",
       "metadata": {
