@@ -16,8 +16,8 @@
       }
     },
     {
-      "signature": "518cabb27b7071c4817a3159bde8d20b646026082bef439f96192ddd03e76b04",
-      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($filter:FilterEpisode!,$page:Int!){episodes(filter:$filter,page:$page){info{...paginationInfo}results{air_date characters{...characterPreview}created episode id name}}}",
+      "signature": "3615d3031aac6d1814ebf3b94b5b79fb946ea0aea10d197b80415c5a0b920e60",
+      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($filter:FilterEpisode,$page:Int){episodes(filter:$filter,page:$page){info{...paginationInfo}results{air_date characters{...characterPreview}created episode id name}}}",
       "metadata": {
         "engineSignature": ""
       }

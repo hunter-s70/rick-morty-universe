@@ -88,6 +88,6 @@ export interface getEpisodes {
 }
 
 export interface getEpisodesVariables {
-  page: number;
-  filter: FilterEpisode;
+  page?: number | null;
+  filter?: FilterEpisode | null;
 }

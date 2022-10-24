@@ -1,9 +1,12 @@
-import { Ref } from "vue";
+import { Ref, unref } from "vue";
 import { useQuery, UseQueryReturn } from "@vue/apollo-composable";
 import gql from "graphql-tag";
 
 import { FilterEpisode } from "../../__generated__/globalTypes";
-import { getEpisodes } from "@/api/__generated__/getEpisodes";
+import {
+  getEpisodes,
+  getEpisodesVariables,
+} from "@/api/__generated__/getEpisodes";
 
 import {
   paginationInfoFragment,
@@ -11,12 +14,22 @@ import {
 } from "@/api/fragments";
 
 export function getEpisodesList(
-  page: Ref<number>,
-  filter: FilterEpisode
-): UseQueryReturn<getEpisodes, { page: Ref<number>; filter: FilterEpisode }> {
+  page?: Ref<number> | null,
+  filter?: FilterEpisode | null
+): UseQueryReturn<getEpisodes, getEpisodesVariables> {
+  const variables: getEpisodesVariables = {};
+
+  if (page) {
+    variables.page = unref(page);
+  }
+
+  if (filter) {
+    variables.filter = filter;
+  }
+
   return useQuery(
     gql`
-      query getEpisodes($page: Int!, $filter: FilterEpisode!) {
+      query getEpisodes($page: Int, $filter: FilterEpisode) {
         episodes(page: $page, filter: $filter) {
           info {
             ...paginationInfo
@@ -36,6 +49,6 @@ export function getEpisodesList(
       ${paginationInfoFragment}
       ${characterPreviewFragment}
     `,
-    { page, filter }
+    variables
   );
 }
