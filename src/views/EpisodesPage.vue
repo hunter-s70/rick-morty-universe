@@ -1,9 +1,7 @@
 <template>
   <div class="episodes">
-    <div v-if="resultList.length">
-      <div v-for="episode in resultList" :key="episode.id">
-        <p>{{ episode.name }} - {{ episode.episode }}</p>
-      </div>
+    <div v-if="resultList.length" class="episodes__section">
+      <episodes-list :episodes="resultList" class="episodes__list" />
     </div>
 
     <LoadMore v-if="pages" :page="page" :pages="pages" @click="loadMore" />
@@ -21,20 +19,22 @@ import { usePagination } from "@/composables/usePagination";
 import { usePaginationList } from "@/composables/usePaginationList";
 
 import LoadMore from "@/components/LoadMore.vue";
+import EpisodesList from "@/components/EpisodesList.vue";
 
-type EpisodesList = (getEpisodes_episodes_results | null)[];
+type EpisodesDataList = (getEpisodes_episodes_results | null)[];
 
 export default defineComponent({
   name: "LocationsPage",
   components: {
     LoadMore,
+    EpisodesList,
   },
   setup() {
     const data = computed(() => episodes.value || null);
 
-    const { list, info } = useListContent<EpisodesList>(data);
+    const { list, info } = useListContent<EpisodesDataList>(data);
     const { page, pages, nextPage } = usePagination(info);
-    const { resultList, loadMore } = usePaginationList<EpisodesList>(
+    const { resultList, loadMore } = usePaginationList<EpisodesDataList>(
       list,
       nextPage
     );
@@ -55,5 +55,14 @@ export default defineComponent({
 
 <style lang="scss">
 .episodes {
+  &__section {
+    padding: 0 15px 20px;
+
+    @media (min-width: 992px) {
+      & {
+        padding: 0 45px 60px;
+      }
+    }
+  }
 }
 </style>
