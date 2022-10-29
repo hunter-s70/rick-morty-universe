@@ -50,18 +50,16 @@
       </p>
     </div>
 
-    <div v-if="character.episode" class="character__info-block episodes">
-      <h2 class="episodes__title">Episodes</h2>
+    <div
+      v-if="character.episode"
+      class="character__info-block episodes-section"
+    >
+      <h2 class="episodes-section__title">Episodes</h2>
 
-      <p
-        v-for="episode in character.episode"
-        :key="episode.id"
-        class="episodes__episode"
-      >
-        <span class="episodes__episode-title">{{ episode.name }}</span>
-        <span class="episodes__episode-separator"></span>
-        <span class="episodes__episode-number">{{ episode.episode }}</span>
-      </p>
+      <episodes-list
+        :episodes="character.episode"
+        class="episodes-section__episodes-list"
+      />
     </div>
   </div>
 </template>
@@ -72,8 +70,13 @@ import { useRoute } from "vue-router";
 import { useResult } from "@vue/apollo-composable";
 import { getCharacterInfo } from "@/api/characters.gql";
 
+import EpisodesList from "@/components/EpisodesList.vue";
+
 export default defineComponent({
   name: "CharactersPage",
+  components: {
+    EpisodesList,
+  },
   setup() {
     const route = useRoute();
 
@@ -102,7 +105,7 @@ export default defineComponent({
   }
 }
 
-.episodes {
+.episodes-section {
   margin-top: 45px;
   padding: 0 15px 20px;
   text-align: left;
@@ -115,23 +118,6 @@ export default defineComponent({
 
   &__title {
     text-align: center;
-  }
-
-  &__episode {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 30px;
-    align-items: baseline;
-    column-gap: 10px;
-
-    &-title {
-      font-weight: bold;
-    }
-
-    &-separator {
-      display: inline-block;
-      border-bottom: 2px dotted;
-    }
   }
 }
 </style>
