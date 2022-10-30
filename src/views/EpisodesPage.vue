@@ -1,10 +1,18 @@
 <template>
   <div class="episodes">
+    <div class="episodes__section season">
+      <span
+        v-for="season in LAST_KNOWN_SEASON"
+        :key="season"
+        class="season__badge"
+        @click="loadEpisodes(season)"
+      >
+        Season {{ season }}
+      </span>
+    </div>
     <div v-if="resultList.length" class="episodes__section">
       <episodes-list :episodes="resultList" class="episodes__list" />
     </div>
-
-    <LoadMore v-if="pages" :page="page" :pages="pages" @click="loadMore" />
   </div>
 </template>
 
@@ -15,10 +23,8 @@ import { getEpisodesList } from "@/api/episodes.gql";
 import { getEpisodes_episodes_results } from "@/api/__generated__/getEpisodes";
 
 import { useListContent } from "@/composables/useListContent";
-import { usePagination } from "@/composables/usePagination";
-import { usePaginationList } from "@/composables/usePaginationList";
+import { useEpisodes } from "@/composables/useEpisodes";
 
-import LoadMore from "@/components/LoadMore.vue";
 import EpisodesList from "@/components/EpisodesList.vue";
 
 type EpisodesDataList = (getEpisodes_episodes_results | null)[];
@@ -26,28 +32,25 @@ type EpisodesDataList = (getEpisodes_episodes_results | null)[];
 export default defineComponent({
   name: "LocationsPage",
   components: {
-    LoadMore,
     EpisodesList,
   },
   setup() {
+    const defaultSeason = 1;
     const data = computed(() => episodes.value || null);
+    const { seasonSearchQuery, LAST_KNOWN_SEASON, loadEpisodes } =
+      useEpisodes();
 
-    const { list, info } = useListContent<EpisodesDataList>(data);
-    const { page, pages, nextPage } = usePagination(info);
-    const { resultList, loadMore } = usePaginationList<EpisodesDataList>(
-      list,
-      nextPage
-    );
+    loadEpisodes(defaultSeason);
 
-    const filter = { episode: "S02" };
-    const { result } = getEpisodesList(page, filter);
+    const { list } = useListContent<EpisodesDataList>(data);
+    const { result } = getEpisodesList(null, seasonSearchQuery);
     const episodes = useResult(result);
 
     return {
-      page,
-      pages,
-      resultList,
-      loadMore,
+      resultList: list,
+
+      LAST_KNOWN_SEASON,
+      loadEpisodes,
     };
   },
 });
@@ -62,6 +65,18 @@ export default defineComponent({
       & {
         padding: 0 45px 60px;
       }
+    }
+  }
+}
+
+.season {
+  &__badge {
+    padding: 2px 5px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
