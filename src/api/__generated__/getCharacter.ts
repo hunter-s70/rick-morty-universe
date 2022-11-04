@@ -73,6 +73,10 @@ export interface getCharacter_character_episode {
    * Time at which the episode was created in the database.
    */
   created: string | null;
+  /**
+   * The air date of the episode.
+   */
+  air_date: string | null;
 }
 
 export interface getCharacter_character {

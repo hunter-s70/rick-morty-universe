@@ -57,10 +57,6 @@ export interface getEpisodes_episodes_results {
    */
   name: string | null;
   /**
-   * The air date of the episode.
-   */
-  air_date: string | null;
-  /**
    * The code of the episode.
    */
   episode: string | null;
@@ -68,6 +64,10 @@ export interface getEpisodes_episodes_results {
    * Time at which the episode was created in the database.
    */
   created: string | null;
+  /**
+   * The air date of the episode.
+   */
+  air_date: string | null;
   /**
    * List of characters who have been seen in the episode.
    */

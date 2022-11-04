@@ -25,4 +25,8 @@ export interface episodeFragment {
    * Time at which the episode was created in the database.
    */
   created: string | null;
+  /**
+   * The air date of the episode.
+   */
+  air_date: string | null;
 }

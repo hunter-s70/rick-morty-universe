@@ -9,15 +9,15 @@
       }
     },
     {
-      "signature": "172ae9fa87987d524719af6289d063e6902fba5f7a16b5846ecef8ea5f6bacc9",
-      "document": "fragment characterPreview on Character{id image name}fragment episodeFragment on Episode{created episode id name}fragment locationFragment on Location{created dimension id name type}query getCharacter($id:ID!){character(id:$id){created episode{...episodeFragment}gender location{...locationFragment}origin{...locationFragment}species status type...characterPreview}}",
+      "signature": "73a6e72a489e96d69ad2ea4063da6668aa81147b2c417f0ff460d8fc4d40ebf1",
+      "document": "fragment characterPreview on Character{id image name}fragment episodeFragment on Episode{air_date created episode id name}fragment locationFragment on Location{created dimension id name type}query getCharacter($id:ID!){character(id:$id){created episode{...episodeFragment}gender location{...locationFragment}origin{...locationFragment}species status type...characterPreview}}",
       "metadata": {
         "engineSignature": ""
       }
     },
     {
-      "signature": "3615d3031aac6d1814ebf3b94b5b79fb946ea0aea10d197b80415c5a0b920e60",
-      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($filter:FilterEpisode,$page:Int){episodes(filter:$filter,page:$page){info{...paginationInfo}results{air_date characters{...characterPreview}created episode id name}}}",
+      "signature": "378c7291cf3391295be19d75a2b8990b1005bed7376acd6dedd0f7f9369d017d",
+      "document": "fragment characterPreview on Character{id image name}fragment episodeFragment on Episode{air_date created episode id name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($filter:FilterEpisode,$page:Int){episodes(filter:$filter,page:$page){info{...paginationInfo}results{characters{...characterPreview}...episodeFragment}}}",
       "metadata": {
         "engineSignature": ""
       }
