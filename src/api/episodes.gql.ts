@@ -8,6 +8,7 @@ import { getEpisodes } from "@/api/__generated__/getEpisodes";
 import {
   paginationInfoFragment,
   characterPreviewFragment,
+  episodeInfoFragment,
 } from "@/api/fragments";
 
 export function getEpisodesList(
@@ -28,11 +29,7 @@ export function getEpisodesList(
             ...paginationInfo
           }
           results {
-            id
-            name
-            air_date
-            episode
-            created
+            ...episodeFragment
             characters {
               ...characterPreview
             }
@@ -41,6 +38,7 @@ export function getEpisodesList(
       }
       ${paginationInfoFragment}
       ${characterPreviewFragment}
+      ${episodeInfoFragment}
     `,
     { page, filter }
   );

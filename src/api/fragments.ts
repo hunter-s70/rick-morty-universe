@@ -45,5 +45,6 @@ export const episodeInfoFragment = gql`
     name
     episode
     created
+    air_date
   }
 `;
