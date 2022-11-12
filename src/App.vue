@@ -2,8 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/locations">Universe</router-link> |
-    <router-link to="/episodes">Episodes</router-link> |
-    <router-link to="/statistics">Statistics</router-link>
+    <router-link to="/episodes">Episodes</router-link>
   </div>
   <router-view />
 </template>
