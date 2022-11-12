@@ -6,11 +6,18 @@
   >
     <p class="tile__title">{{ item.name }}</p>
     <img class="tile__img" :src="item.image" :alt="item.name" />
+    <font-awesome-icon
+      v-if="item.status"
+      class="tile__status-icon"
+      size="xs"
+      :icon="['fa-solid', getStatusIcon(item.status)]"
+    />
   </component>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import { CharacterStatus } from "@/api/characters.gql";
 import { characterPreview } from "@/api/__generated__/characterPreview";
 
 export default defineComponent({
@@ -26,11 +33,24 @@ export default defineComponent({
       default: "",
     },
   },
+
+  methods: {
+    getStatusIcon(status: CharacterStatus): string {
+      const iconsMap: Record<CharacterStatus, string> = {
+        [CharacterStatus.Alive]: "fa-heart-pulse",
+        [CharacterStatus.Dead]: "fa-skull-crossbones",
+        [CharacterStatus.Unknown]: "fa-user-secret",
+      };
+
+      return iconsMap[status];
+    },
+  },
 });
 </script>
 
 <style scoped lang="scss">
 .tile {
+  position: relative;
   padding: 0 10px 15px;
   color: #2c3e50;
   text-decoration: none;
@@ -57,6 +77,14 @@ export default defineComponent({
     vertical-align: top;
     width: 100%;
     max-width: 300px;
+  }
+
+  &__status-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #d93333;
+    opacity: 0.5;
   }
 }
 </style>

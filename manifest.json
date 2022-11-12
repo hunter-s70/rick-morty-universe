@@ -2,29 +2,29 @@
   "version": 2,
   "operations": [
     {
-      "signature": "0daab07725607ffc43a3e3a8fa850488eb60970911914e32e995b1ae81e73d02",
-      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getCharacters($page:Int!){characters(page:$page){info{...paginationInfo}results{...characterPreview}}}",
+      "signature": "434a9ae4e58fe01b67d4f49b24b4e054caa08642c225b4939fbc05e8391ab021",
+      "document": "fragment characterPreview on Character{id image name status}fragment paginationInfo on Info{count next pages prev}query getCharacters($page:Int!){characters(page:$page){info{...paginationInfo}results{...characterPreview}}}",
       "metadata": {
         "engineSignature": ""
       }
     },
     {
-      "signature": "73a6e72a489e96d69ad2ea4063da6668aa81147b2c417f0ff460d8fc4d40ebf1",
-      "document": "fragment characterPreview on Character{id image name}fragment episodeFragment on Episode{air_date created episode id name}fragment locationFragment on Location{created dimension id name type}query getCharacter($id:ID!){character(id:$id){created episode{...episodeFragment}gender location{...locationFragment}origin{...locationFragment}species status type...characterPreview}}",
+      "signature": "d2627c32ce3613c5c3f0fa0a8d68b606ce863c7b89c364e218ebe3cbc6add11f",
+      "document": "fragment characterPreview on Character{id image name status}fragment episodeFragment on Episode{air_date created episode id name}fragment locationFragment on Location{created dimension id name type}query getCharacter($id:ID!){character(id:$id){created episode{...episodeFragment}gender location{...locationFragment}origin{...locationFragment}species type...characterPreview}}",
       "metadata": {
         "engineSignature": ""
       }
     },
     {
-      "signature": "378c7291cf3391295be19d75a2b8990b1005bed7376acd6dedd0f7f9369d017d",
-      "document": "fragment characterPreview on Character{id image name}fragment episodeFragment on Episode{air_date created episode id name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($filter:FilterEpisode,$page:Int){episodes(filter:$filter,page:$page){info{...paginationInfo}results{characters{...characterPreview}...episodeFragment}}}",
+      "signature": "6623f946e34fe165d45b05cc52c02987e5aedac69d2aa2f0615433e85e6e7258",
+      "document": "fragment characterPreview on Character{id image name status}fragment episodeFragment on Episode{air_date created episode id name}fragment paginationInfo on Info{count next pages prev}query getEpisodes($filter:FilterEpisode,$page:Int){episodes(filter:$filter,page:$page){info{...paginationInfo}results{characters{...characterPreview}...episodeFragment}}}",
       "metadata": {
         "engineSignature": ""
       }
     },
     {
-      "signature": "f078876f93566ab2e83413d3f14760cf9cf1eb0f1343e81fd8a9463073cdabf4",
-      "document": "fragment characterPreview on Character{id image name}fragment paginationInfo on Info{count next pages prev}query getLocations($page:Int!){locations(page:$page){info{...paginationInfo}results{created dimension id name residents{...characterPreview}type}}}",
+      "signature": "44ce49f5cd4b6a80a37505ade6fb05be084cdd149d361416f6766d97986614f3",
+      "document": "fragment characterPreview on Character{id image name status}fragment paginationInfo on Info{count next pages prev}query getLocations($page:Int!){locations(page:$page){info{...paginationInfo}results{created dimension id name residents{...characterPreview}type}}}",
       "metadata": {
         "engineSignature": ""
       }

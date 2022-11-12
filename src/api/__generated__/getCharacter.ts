@@ -95,6 +95,10 @@ export interface getCharacter_character {
    */
   image: string | null;
   /**
+   * The status of the character ('Alive', 'Dead' or 'unknown').
+   */
+  status: string | null;
+  /**
    * The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').
    */
   gender: string | null;
@@ -102,10 +106,6 @@ export interface getCharacter_character {
    * The type or subspecies of the character.
    */
   type: string | null;
-  /**
-   * The status of the character ('Alive', 'Dead' or 'unknown').
-   */
-  status: string | null;
   /**
    * The species of the character.
    */
