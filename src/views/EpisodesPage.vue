@@ -13,6 +13,14 @@
     <div v-if="resultList.length" class="episodes__section">
       <episodes-list :episodes="resultList" class="episodes__list" />
     </div>
+    <div class="episodes__section">
+      <h2>Characters amount per episode</h2>
+      <line-chart
+        v-if="characterPerEpisodeData.length"
+        :key="Math.random()"
+        :data="characterPerEpisodeData"
+      />
+    </div>
   </div>
 </template>
 
@@ -26,6 +34,7 @@ import { useListContent } from "@/composables/useListContent";
 import { useEpisodes } from "@/composables/useEpisodes";
 
 import EpisodesList from "@/components/EpisodesList.vue";
+import LineChart from "@/components/LineChart.vue";
 
 type EpisodesDataList = (getEpisodes_episodes_results | null)[];
 
@@ -33,6 +42,7 @@ export default defineComponent({
   name: "LocationsPage",
   components: {
     EpisodesList,
+    LineChart,
   },
   setup() {
     const defaultSeason = 1;
@@ -52,6 +62,22 @@ export default defineComponent({
       LAST_KNOWN_SEASON,
       loadEpisodes,
     };
+  },
+  computed: {
+    characterPerEpisodeData(): number[] {
+      const results: number[] = [];
+
+      if (this.resultList.length) {
+        results.push(0); // to start line chart from 0
+        this.resultList.forEach(
+          (episode: getEpisodes_episodes_results | null) => {
+            results.push(episode?.characters.length || 0);
+          }
+        );
+      }
+
+      return results;
+    },
   },
 });
 </script>

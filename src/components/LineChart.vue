@@ -85,8 +85,8 @@ export default defineComponent({
       const path = d3
         .line()
         .x((d, i) => scale.xData(i))
-        .y((d) => scale.yData(d));
-      // .curve(d3.curveCardinal)
+        .y((d) => scale.yData(d))
+        .curve(d3.curveCardinal);
 
       this.line = path(this.data);
     },
@@ -104,7 +104,7 @@ export default defineComponent({
   &__line {
     fill: none;
     stroke: #76bf8a;
-    stroke-width: 3px;
+    stroke-width: 2px;
   }
 }
 </style>
