@@ -44,6 +44,10 @@ export interface getEpisodes_episodes_results_characters {
    * All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
    */
   image: string | null;
+  /**
+   * The status of the character ('Alive', 'Dead' or 'unknown').
+   */
+  status: string | null;
 }
 
 export interface getEpisodes_episodes_results {

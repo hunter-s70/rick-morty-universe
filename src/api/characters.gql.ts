@@ -12,6 +12,12 @@ import {
   episodeInfoFragment,
 } from "@/api/fragments";
 
+export enum CharacterStatus {
+  Alive = "Alive",
+  Dead = "Dead",
+  Unknown = "unknown",
+}
+
 export function getCharactersList(
   page: Ref<number>
 ): UseQueryReturn<getCharacters, { page: Ref<number> }> {
@@ -44,7 +50,6 @@ export function getCharacterInfo(
           ...characterPreview
           gender
           type
-          status
           species
           created
           origin {

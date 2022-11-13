@@ -20,6 +20,7 @@ export const characterPreviewFragment = gql`
     id
     name
     image
+    status
   }
 `;
 
