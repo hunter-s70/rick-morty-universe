@@ -6,6 +6,7 @@ export interface IComposablePaginationInfo {
   page: Ref<number>;
   pages: ComputedRef<number | null>;
   next: ComputedRef<number | null>;
+  canLoadPage: ComputedRef<boolean>;
   nextPage: () => void;
 }
 
@@ -15,6 +16,9 @@ export function usePagination(
   const page = ref(1);
   const pages = computed(() => paginationInfo.value?.pages || null);
   const next = computed(() => paginationInfo.value?.next || null);
+  const canLoadPage = computed(
+    () => !!next.value && page.value !== pages.value
+  );
   const nextPage = () => {
     if (next.value) {
       page.value = next.value;
@@ -25,6 +29,7 @@ export function usePagination(
     page,
     pages,
     next,
+    canLoadPage,
     nextPage,
   };
 }

@@ -21,7 +21,12 @@
       </div>
     </div>
 
-    <LoadMore v-if="pages" :page="page" :pages="pages" @click="loadMore" />
+    <LoadMore
+      v-if="pages && canLoadPage"
+      :page="page"
+      :pages="pages"
+      @click="loadMore"
+    />
   </div>
 </template>
 
@@ -51,7 +56,7 @@ export default defineComponent({
     const data = computed(() => locations.value || null);
 
     const { list, info } = useListContent<LocationsList>(data);
-    const { page, pages, nextPage } = usePagination(info);
+    const { page, pages, nextPage, canLoadPage } = usePagination(info);
     const { resultList, loadMore } = usePaginationList<LocationsList>(
       list,
       nextPage
@@ -63,6 +68,7 @@ export default defineComponent({
     return {
       page,
       pages,
+      canLoadPage,
       resultList,
       loadMore,
     };
@@ -85,6 +91,8 @@ export default defineComponent({
 $tile-width: 90px;
 
 .locations {
+  padding: 10px 10px 40px;
+
   &__location:not(:last-child) {
     margin-bottom: 80px;
   }
